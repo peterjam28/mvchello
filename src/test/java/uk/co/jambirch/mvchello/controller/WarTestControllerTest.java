@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -12,7 +14,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import uk.co.jambirch.mvchello.service.WarTestService;
-import uk.co.jambirch.mvchello.servlet3.TestContext;
 import uk.co.jambirch.mvchello.servlet3.WarTestWebConfig;
 
 import static org.hamcrest.core.Is.is;
@@ -22,9 +23,18 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {TestContext.class, WarTestWebConfig.class})
+@ContextConfiguration(classes = {WarTestWebConfig.class})
 @WebAppConfiguration
 public class WarTestControllerTest {
+
+    @Configuration
+    static class TestContext
+    {
+        @Bean
+        public WarTestService warTestService() {
+            return Mockito.mock(WarTestService.class);
+        }
+    }
 
     private MockMvc mockMvc;
 
