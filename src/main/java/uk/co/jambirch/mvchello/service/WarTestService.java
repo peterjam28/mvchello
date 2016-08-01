@@ -16,5 +16,4 @@ public class WarTestService {
             return "Hello " + name;
         }
     }
-
 }
