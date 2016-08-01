@@ -8,7 +8,7 @@
     <title>Spring MVC</title>
 </head>
 <body>
-<h1>${title}</h1>
+<h1>index - ${title}</h1>
 <p>
     <c:if test="${not empty msg}">
         Hello ${msg}

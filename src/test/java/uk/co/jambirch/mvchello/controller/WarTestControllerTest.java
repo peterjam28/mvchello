@@ -16,8 +16,6 @@ import org.springframework.web.context.WebApplicationContext;
 import uk.co.jambirch.mvchello.service.WarTestService;
 import uk.co.jambirch.mvchello.servlet3.WarTestWebConfig;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -61,9 +59,9 @@ public class WarTestControllerTest {
 
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("index"))
-                .andExpect(forwardedUrl("/index.jsp"))
-                .andExpect(model().attribute("title", is("Default")))
+                .andExpect(view().name("mvchello"))
+                .andExpect(forwardedUrl("/mvchello.jsp"))
+                .andExpect(model().attribute("title", "Default"))
                 .andExpect(model().attribute("msg", "WarTest JUnit tests - default"));
 
         verify(warTestServiceMock, times(1)).getTitle("");
@@ -78,9 +76,9 @@ public class WarTestControllerTest {
 
         mockMvc.perform(get("/world.form"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("index"))
-                .andExpect(forwardedUrl("/index.jsp"))
-                .andExpect(model().attribute("title", is("Named")))
+                .andExpect(view().name("mvchello"))
+                .andExpect(forwardedUrl("/mvchello.jsp"))
+                .andExpect(model().attribute("title", "Named"))
                 .andExpect(model().attribute("msg", "WarTest JUnit tests - named"));
 
         verify(warTestServiceMock, times(1)).getTitle("world.form");

@@ -17,12 +17,12 @@ public class WarTestController {
         this.helloWorldService = helloWorldService;
     }
 
-    @GetMapping(value = "/")
+    @GetMapping
     public String index(Map<String, Object> model) {
         model.put("title", helloWorldService.getTitle(""));
         model.put("msg", helloWorldService.getDesc());
 
-        return "index";
+        return "mvchello";
     }
 
     @GetMapping(value = "/{name:.+}")
@@ -30,7 +30,7 @@ public class WarTestController {
         model.put("title", helloWorldService.getTitle(name));
         model.put("msg", helloWorldService.getDesc());
 
-        return "index";
+        return "mvchello";
 
     }
 
